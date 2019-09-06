@@ -49,6 +49,22 @@ namespace CalculatorTest
             Assert.AreEqual(result, 1);
         }
 
+       //For Step One Missing Numbers Test
+        [TestMethod]
+        public void Add_MissingNumbers_ReturnSum()
+        {
+            var calculator = new Calculator();
+            var result = calculator.Add("1,,4");
+            Assert.AreEqual(result, 5);
+        }
+
+        [TestMethod]
+        public void Add_NewLineDelimiter_ReturnSum()
+        {
+            var calculator = new Calculator();
+            var result = calculator.Add("1\n2,3");
+            Assert.AreEqual(result, 6);
+        }
     }
 }
 
