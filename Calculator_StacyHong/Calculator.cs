@@ -42,13 +42,18 @@ namespace Calculator_StacyHong
                 throw new ArgumentException($"These negatives: {listOfNegativeNumbers} are not allowed.");
             }
 
-
             foreach (var number in convertedToIntList)
+            {
+                //Ignore any numberes greater than 1000 and set as 0.
+                if (number > 1000) total += 0;
+
+                else
                 {
                     total += number;
                 }
+            }
+            return total;
 
-                return total;
         }
     }
 }

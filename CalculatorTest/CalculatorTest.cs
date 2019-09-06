@@ -67,7 +67,7 @@ namespace CalculatorTest
         }
 
         [TestMethod]
-        public void Add_ManyNegativeNumbers_ThrowArugmentException()
+        public void Add_ManyNegativeNumbers_ThrowArgumentException()
         {
             try
             {
@@ -79,6 +79,14 @@ namespace CalculatorTest
             {
                 Assert.AreEqual("These negatives: -100,-5,-2 are not allowed.", ex.Message);
             }
+        }
+
+        [TestMethod]
+        public void Add_IgnoreNumbersGreaterThan1000_ReturnSum()
+        {
+            var calculator = new Calculator();
+            var result = calculator.Add("1,1500,24");
+            Assert.AreEqual(result, 25);
         }
 
     }
