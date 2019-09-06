@@ -89,6 +89,15 @@ namespace CalculatorTest
             Assert.AreEqual(result, 25);
         }
 
+        [TestMethod]
+        public void Add_OneCustomDelimiterOfOneCharacterLength_ReturnsSum()
+        {
+            var calculator = new Calculator();
+            string input = "//;\n1;2";
+            int result = calculator.Add(input);
+            Assert.AreEqual(3, result);
+        }
+
     }
 }
 

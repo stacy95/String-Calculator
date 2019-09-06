@@ -9,11 +9,20 @@ namespace Calculator_StacyHong
    public class Calculator
     {
         private readonly List<string> _listOfDelimiters = new List<string>() { ",", "\n" };
+        private readonly string _customDelimiterStartsWith = "//";
 
         public int Add(string value)
         {
             if (String.IsNullOrEmpty(value)) return 0;
-            
+
+            else if (value.StartsWith(_customDelimiterStartsWith, StringComparison.InvariantCultureIgnoreCase))
+            {
+                GetCustomDelimiter(value);
+
+                //Setting the value without the custom delimiters that are appended
+                value = value.Substring(value.IndexOf('\n') + 1);
+            }
+
             return AddOperator(value);
         }
 
@@ -53,7 +62,16 @@ namespace Calculator_StacyHong
                 }
             }
             return total;
-
         }
+
+        private void GetCustomDelimiter(string value)
+        {
+            var firstIndex = 2;
+            var lastIndex = value.IndexOf('\n');
+          
+            //Support one custom delimiter of one character length
+            _listOfDelimiters.Add(value.Substring(firstIndex, lastIndex - firstIndex));
+        }
+
     }
 }
