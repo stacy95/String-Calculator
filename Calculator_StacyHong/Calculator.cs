@@ -53,7 +53,7 @@ namespace Calculator_StacyHong
 
             foreach (var number in convertedToIntList)
             {
-                //Ignore any numberes greater than 1000 and set as 0.
+                //Ignore any numbers greater than 1000 and set as 0.
                 if (number > 1000) total += 0;
 
                 else
@@ -68,9 +68,18 @@ namespace Calculator_StacyHong
         {
             var firstIndex = 2;
             var lastIndex = value.IndexOf('\n');
-          
+            var subStringedDelimiters = value.Substring(firstIndex, lastIndex - firstIndex);
+
+            //If Statement to support customer delimiter of any length and support multiple delimiters of any length
+            if (value.StartsWith($"{_customDelimiterStartsWith}[", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var customDelimiters = subStringedDelimiters.Split('[').Select(endsWith => endsWith.TrimEnd(']')).ToList();
+                customDelimiters.Remove(string.Empty);
+                _listOfDelimiters.AddRange(customDelimiters);
+            }
+
             //Support one custom delimiter of one character length
-            _listOfDelimiters.Add(value.Substring(firstIndex, lastIndex - firstIndex));
+            else _listOfDelimiters.Add(value.Substring(firstIndex, lastIndex - firstIndex));
         }
 
     }
