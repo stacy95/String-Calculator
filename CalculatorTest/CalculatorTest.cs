@@ -15,13 +15,22 @@ namespace CalculatorTest
             Assert.AreEqual(result, 31);
         }
 
-        //This test case is for Step One: only support a maximum of two numbers.
+        ////This test case is for Step One: only support a maximum of two numbers.
+        //[TestMethod]
+        //public void Add_MoreThanTwoNumbers_ReturnZero()
+        //{
+        //    var calculator = new Calculator();
+        //    var result = calculator.Add("1,4,5");
+        //    Assert.AreEqual(result, 0);
+        //}
+
+        //This is for Step Two and onwards.
         [TestMethod]
-        public void Add_MoreThanTwoNumbers_ReturnZero()
+        public void Add_MoreThanTwoNumbers_ReturnSum()
         {
             var calculator = new Calculator();
             var result = calculator.Add("1,4,5");
-            Assert.AreEqual(result, 0);
+            Assert.AreEqual(result, 10);
         }
 
         [TestMethod]

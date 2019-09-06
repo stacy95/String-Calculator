@@ -27,21 +27,18 @@ namespace Calculator_StacyHong
             var convertedToIntList = arrayOfNumbers.Select(num => int.TryParse(num, out tryParseResult)).Select(res => tryParseResult).ToList();
 
             //To support step one where we can only have a maximum of 2 numbers.
-            if (convertedToIntList.Count() > 2)
-            {
-                Console.WriteLine("We do not support more than two numbers.");
-                return 0;
-            }
+            //if (convertedToIntList.Count() > 2)
+            //{
+            //    Console.WriteLine("We do not support more than two numbers.");
+            //    return 0;
+            //}
 
-            else
-            {
                 foreach (var number in convertedToIntList)
                 {
                     total += number;
                 }
 
                 return total;
-            }
         }
     }
 }
