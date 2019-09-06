@@ -11,7 +11,7 @@ namespace Calculator_StacyHong
         private readonly List<string> _listOfDelimiters = new List<string>() { ",", "\n" };
         private readonly string _customDelimiterStartsWith = "//";
 
-        public int Add(string value)
+        public int Add(string value, bool allowNegatives)
         {
             if (String.IsNullOrEmpty(value)) return 0;
 
@@ -23,10 +23,10 @@ namespace Calculator_StacyHong
                 value = value.Substring(value.IndexOf('\n') + 1);
             }
 
-            return AddOperator(value);
+            return AddOperator(value, allowNegatives);
         }
 
-        private int AddOperator(string value)
+        private int AddOperator(string value, bool allowNegatives)
         {
             int total = 0;
             string[] arrayOfNumbers = value.Split(_listOfDelimiters.ToArray(), StringSplitOptions.None);
@@ -45,7 +45,7 @@ namespace Calculator_StacyHong
             var negativeNumbers = convertedToIntList.Where(num => num < 0).ToList();
 
             //If negative and allowNegatives is false throw exception 
-            if (negativeNumbers.Count > 0)
+            if (negativeNumbers.Count > 0 && allowNegatives == false)
             {
                 var listOfNegativeNumbers = string.Join(",", negativeNumbers);
                 throw new ArgumentException($"These negatives: {listOfNegativeNumbers} are not allowed.");
