@@ -33,7 +33,17 @@ namespace Calculator_StacyHong
             //    return 0;
             //}
 
-                foreach (var number in convertedToIntList)
+            var negativeNumbers = convertedToIntList.Where(num => num < 0).ToList();
+
+            //If negative and allowNegatives is false throw exception 
+            if (negativeNumbers.Count > 0)
+            {
+                var listOfNegativeNumbers = string.Join(",", negativeNumbers);
+                throw new ArgumentException($"These negatives: {listOfNegativeNumbers} are not allowed.");
+            }
+
+
+            foreach (var number in convertedToIntList)
                 {
                     total += number;
                 }

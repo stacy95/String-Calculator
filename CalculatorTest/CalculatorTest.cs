@@ -65,6 +65,22 @@ namespace CalculatorTest
             var result = calculator.Add("1\n2,3");
             Assert.AreEqual(result, 6);
         }
+
+        [TestMethod]
+        public void Add_ManyNegativeNumbers_ThrowArugmentException()
+        {
+            try
+            {
+                var calculator = new Calculator();
+                calculator.Add("-100,-5,-2,1,4");
+                Assert.Fail();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.AreEqual("These negatives: -100,-5,-2 are not allowed.", ex.Message);
+            }
+        }
+
     }
 }
 
