@@ -107,6 +107,15 @@ namespace CalculatorTest
             Assert.AreEqual(66, result);
         }
 
+        [TestMethod]
+        public void Add_MultipleCustomDelimiterOfAnyLength_ReturnsSum()
+        {
+            var calculator = new Calculator();
+            string input = "//[*][!!][rrr]\n11rrr22*33!!44";
+            int result = calculator.Add(input);
+            Assert.AreEqual(110, result);
+        }
+
     }
 }
 
