@@ -13,7 +13,7 @@ namespace Calculator_StacyHong
         public int Add(string value)
         {
             if (String.IsNullOrEmpty(value)) return 0;
-
+            
             return AddOperator(value);
         }
 
